@@ -3,7 +3,17 @@ class FlatsController < ApplicationController
 
   # GET /flats or /flats.json
   def index
-    @flats = Flat.all
+    # @flats = Flat.all
+    # Including this line will make sure that if lat/long is nil it will not show up on the map
+
+    @flats = Flat.where.not(latitude: nil, longitude: nil)
+
+    @markers = @flats.map do |flat|
+      {
+      lng: flat.longitude,
+      lat: flat.latitude,
+      }
+    end
   end
 
   # GET /flats/1 or /flats/1.json
