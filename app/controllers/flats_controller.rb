@@ -12,6 +12,8 @@ class FlatsController < ApplicationController
       {
       lng: flat.longitude,
       lat: flat.latitude,
+      info_window: render_to_string(partial: "info_window", locals: { flat: flat }),
+      image_url: "https://kitt.lewagon.com/placeholder/users/random?#{rand(1..100)}"
       }
     end
   end
